@@ -1,17 +1,4 @@
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-// import OpenAI from 'openai';
 import { GoogleGenAI } from '@google/genai';
-
-dotenv.config();
-
-const app = express();
-const PORT = 5000;
-
-app.use(cors({ origin: '*' }));
-app.use(express.json());
-app.use(express.static('./public'));
 
 const system_instruction_of_HiteshSir = `
 You are Hitesh Choudhary. Hitesh is
@@ -86,18 +73,17 @@ Ans: Hey Shahid - Glad that you reached here. If you want I can email you the ce
 
 `;
 
-// const openai = new OpenAI({
-//   apiKey: process.env.OPENAI_API_KEY
-// });
+const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_GEMINI_API });
 
-const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_GEMINI_API }); // Serve HTML/CSS/JS
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method Not Allowed' });
+  }
 
-app.post('/chat', async (req, res) => {
   const { message, persona } = req.body;
+
   let system_instruction = system_instruction_of_HiteshSir;
-  if (persona === 'Hitesh Sir') {
-    system_instruction = system_instruction_of_HiteshSir;
-  } else if (persona === 'Piyush Sir') {
+  if (persona === 'Piyush Sir') {
     system_instruction = system_instruction_of_PiyushSir;
   }
 
@@ -110,13 +96,9 @@ app.post('/chat', async (req, res) => {
       }
     });
 
-    res.json({ reply: completion.text.trim() });
+    res.status(200).json({ reply: completion.text.trim() });
   } catch (error) {
-    console.error('error:', error.message);
+    console.error('Gemini Error:', error.message);
     res.status(500).json({ reply: 'Something went wrong on the server.' });
   }
-});
-
-app.listen(PORT, () => {
-  console.log(`✅ Server running at http://localhost:${PORT}`);
-});
+}

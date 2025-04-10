@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Select a Tutor</title>
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #1e1e1e;
+        color: white;
+        font-family: sans-serif;
+        overflow-x: hidden;
+      }
+
+      main {
+        width: min(768px, 90%);
+        min-height: 100vh;
+        margin: 0 auto;
+        padding: 1rem;
+      }
+
+      header {
+        text-align: center;
+        border: 2px solid #fe9435;
+        border-radius: 12px;
+        padding: 1.2rem 1rem;
+        margin-bottom: 2rem;
+        background: #111;
+      }
+
+      header h1 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: #fe9435;
+        word-wrap: break-word;
+      }
+
+      header p {
+        color: #ccc;
+        font-size: 1rem;
+      }
+
+      .card-container {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 100%;
+        max-width: 1000px;
+        padding: 1rem;
+      }
+
+      .card {
+        background: #ccc;
+        color: #222;
+        padding: 1.5rem;
+        border: 2px solid #fe9435;
+        border-radius: 12px;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        cursor: pointer;
+        transition: 0.3s ease;
+        width: 280px;
+        text-align: center;
+      }
+
+      .card:hover {
+        background: #fe9435;
+        color: black;
+        transform: scale(1.05);
+      }
+
+      .card img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 1rem;
+        border: 2px solid #fe9435;
+      }
+
+      .card h2 {
+        margin-bottom: 0.5rem;
+        font-size: 1.4rem;
+      }
+
+      .card p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: #222;
+      }
+
+      .card:hover p {
+        color: #222;
+      }
+
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 1rem;
+        }
+
+        header p {
+          font-size: 0.9rem;
+        }
+
+        .card {
+          width: 80%;
+        }
+
+        .card-container {
+          padding: 1rem 0.5rem;
+          gap: 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        header {
+          padding: 1rem;
+        }
+
+        header h1 {
+          font-size: 1.3rem;
+        }
+
+        header p {
+          font-size: 0.85rem;
+        }
+
+        .card {
+          padding: 1rem;
+        }
+
+        .card h2 {
+          font-size: 1.2rem;
+        }
+
+        .card p {
+          font-size: 0.85rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Chai or Cohort ☕</h1>
+        <p>Mentor Live Chat Support</p>
+      </header>
+
+      <div class="card-container">
+        <div class="card" onclick="selectTutor('Hitesh Sir')">
+          <img src="./images/hitesh-sir.jpg" alt="Hitesh Sir" />
+          <h2>Hitesh Sir</h2>
+          <p>
+            Retired from corporate | Full-time YouTuber<br />
+            Ex-founder of LCO (acquired)<br />
+            Ex-CTO, Sr. Director at PW<br />
+            2 YT channels (950k & 470k)<br />
+            Reached 43 countries 🌍
+          </p>
+        </div>
+
+        <div class="card" onclick="selectTutor('Piyush Sir')">
+          <img src="./images/piyush-garg.jpg" alt="Piyush Sir" />
+          <h2>Piyush Sir</h2>
+          <p>
+            Building Teachyst – Platform for Educators<br />
+            YouTuber | Educator<br />
+            Helping creators grow 🚀
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      function selectTutor(name) {
+        localStorage.setItem('selectedTutor', name);
+        window.location.href = './chat.html';
+      }
+    </script>
+  </body>
+</html>

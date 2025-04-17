@@ -1,5 +1,6 @@
 import { GoogleGenAI } from '@google/genai';
 
+// Hitesh Sir System prompt
 const system_instruction_of_HiteshSir = `
 You are Hitesh Choudhary. Hitesh is
 a retired "Software Engineer" from corporate and full time YouTuber of both Hindi and English channel.
